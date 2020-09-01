@@ -1,0 +1,31 @@
+dist: bionic
+
+language: python
+
+python:
+  - 2.7
+  - 3.5
+
+addons:
+  postgresql: 9.5
+  
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - psql -U postgres -c "CREATE DATABASE travisci;" 
+
+script:
+  - cd ..
+  - mv QuestionKit-Django question_kit
+  - mkdir django
+  - cd django
+  - django-admin.py startproject qk
+  - mv ../question_kit qk
+  - cd qk
+  - cp question_kit/travis_settings.py qk/settings.py
+  - python manage.py migrate
+  - python manage.py test
+  - cp question_kit/.pylintrc .
+  - pylint question_kit
+  - bandit -r .
