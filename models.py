@@ -32,7 +32,7 @@ class ScheduledItem(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
 
-    questions = models.ForeignKey(QuestionSet, related_name='scheduled_items')
+    questions = models.ForeignKey(QuestionSet, related_name='scheduled_items', on_delete=models.CASCADE)
 
     def to_dict(self, id_prefix=''):
         dict_obj = {
