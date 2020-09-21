@@ -1,5 +1,5 @@
+# pylint: disable=no-member, line-too-long
 # -*- coding: utf-8 -*-
-# pylint: disable=no-member
 
 from __future__ import unicode_literals
 
