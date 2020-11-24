@@ -39,6 +39,9 @@ class ScheduledItem(models.Model):
 
     questions = models.ForeignKey(QuestionSet, related_name='scheduled_items', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.questions + ' (' + self.date.isoformat() + ', ' + self.start_time.isoformat() + ' - ' + self.end_time.isoformat() + ')'
+
     def to_dict(self, id_prefix=''):
         dict_obj = {
             'id': id_prefix + str(self.pk),
