@@ -60,3 +60,22 @@ class ScheduledItem(models.Model):
         dict_obj['end'] = self.end_time.isoformat()
 
         return dict_obj
+
+def incomplete_values(form_definition, form_response):
+    incomplete = []
+
+    for item in form_definition:
+        if 'required' in item and item['required'] is True:
+            key = item['key']
+
+            if key in form_response:
+                value = form_response[key]
+
+                if value is None or len(value) == 0: # pylint: disable=len-as-condition
+                    if (key in incomplete) is False:
+                        incomplete.append(key)
+            else:
+                if (key in incomplete) is False:
+                    incomplete.append(key)
+
+    return incomplete
