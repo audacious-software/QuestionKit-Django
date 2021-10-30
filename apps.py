@@ -6,3 +6,4 @@ from django.apps import AppConfig
 class QuestionKitConfig(AppConfig):
     name = 'question_kit'
     verbose_name = 'Question Kit'
+    default_auto_field = 'django.db.models.AutoField'
