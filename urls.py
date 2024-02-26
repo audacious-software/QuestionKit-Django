@@ -1,21 +1,16 @@
-"""Passive Data Kit URL Configuration
+# pylint: disable=no-name-in-module
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
-from django.conf.urls import url
+import sys
 
-from .views import schedule_json
+if sys.version_info[0] > 2:
+    from django.urls import re_path
 
-urlpatterns = [
-    url(r'^schedule/(?P<identifier>.+).json$', schedule_json, name='question_kit_schedule_json'),
-]
+    urlpatterns = [
+        re_path(r'^schedule/(?P<identifier>.+).json$', schedule_json, name='question_kit_schedule_json'),
+    ]
+else:
+    from django.conf.urls import url
+
+    urlpatterns = [
+        url(r'^schedule/(?P<identifier>.+).json$', schedule_json, name='question_kit_schedule_json'),
+    ]
