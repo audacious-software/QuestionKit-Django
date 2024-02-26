@@ -11,7 +11,7 @@ if sys.version_info[0] > 2:
         re_path(r'^admin/', django.contrib.admin.site.urls),
     ]
 else:
-    from django.conf.urls import include, url
+    from django.conf.urls import url
 
     urlpatterns = [
         url(r'^admin/', django.contrib.admin.site.urls),
