@@ -1,6 +1,8 @@
-# pylint: disable=no-name-in-module
+# pylint: disable=line-too-long, no-name-in-module
 
 import sys
+
+from .views import schedule_json
 
 if sys.version_info[0] > 2:
     from django.urls import re_path
